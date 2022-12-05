@@ -8,9 +8,15 @@ package homework.ultimatemall.dto;
 
 import lombok.Data;
 
+import java.time.LocalDateTime;
+
 @Data
 public class OrderDto extends CartDto {
     private Long addressId;
 
     private String orderId;
+
+    private LocalDateTime orderTime;
+
+    private Integer orderState;
 }

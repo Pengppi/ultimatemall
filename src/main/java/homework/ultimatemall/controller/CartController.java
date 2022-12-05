@@ -7,6 +7,8 @@
 package homework.ultimatemall.controller;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.baomidou.mybatisplus.core.conditions.update.LambdaUpdateWrapper;
+import homework.ultimatemall.common.BaseContext;
 import homework.ultimatemall.common.R;
 import homework.ultimatemall.dto.CartDto;
 import homework.ultimatemall.entity.Cart;
@@ -17,7 +19,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpSession;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
@@ -35,11 +36,12 @@ public class CartController {
 
 
     @GetMapping("/add/{itemId}")
-    public R<String> add(@PathVariable Long itemId, HttpSession session) {
+    public R<String> add(@PathVariable Long itemId) {
         LambdaQueryWrapper<Cart> queryWrapper = new LambdaQueryWrapper<>();
-        Long userId = (Long) session.getAttribute("userId");
+        Long userId = BaseContext.getCurrentId();
         queryWrapper.eq(Cart::getUserId, userId);
         queryWrapper.eq(Cart::getItemId, itemId);
+        log.info("userId:{}", userId);
         Cart cart = cartService.getOne(queryWrapper);
         if (cart == null) {
             cart = new Cart();
@@ -48,16 +50,19 @@ public class CartController {
             cart.setItemNum(1);
             cartService.save(cart);
         } else {
-            cart.setItemNum(cart.getItemNum() + 1);
-            cartService.updateById(cart);
+            LambdaUpdateWrapper<Cart> updateWrapper = new LambdaUpdateWrapper<>();
+            updateWrapper.eq(Cart::getUserId, userId);
+            updateWrapper.eq(Cart::getItemId, itemId);
+            updateWrapper.set(Cart::getItemNum, cart.getItemNum() + 1);
+            cartService.update(updateWrapper);
         }
         return R.success("添加成功");
     }
 
     @PutMapping("/{itemId}")
-    public R<String> update(@PathVariable Long itemId, HttpSession session) {
+    public R<String> update(@PathVariable Long itemId) {
         LambdaQueryWrapper<Cart> queryWrapper = new LambdaQueryWrapper<>();
-        Long userId = (Long) session.getAttribute("userId");
+        Long userId = BaseContext.getCurrentId();
         queryWrapper.eq(Cart::getUserId, userId);
         queryWrapper.eq(Cart::getItemId, itemId);
         Cart cart = cartService.getOne(queryWrapper);
@@ -77,8 +82,8 @@ public class CartController {
 
 
     @DeleteMapping
-    public R<String> clearAll(HttpSession session) {
-        Long userId = (Long) session.getAttribute("userId");
+    public R<String> clearAll() {
+        Long userId = BaseContext.getCurrentId();
         LambdaQueryWrapper<Cart> queryWrapper = new LambdaQueryWrapper<>();
         queryWrapper.eq(Cart::getUserId, userId);
         cartService.remove(queryWrapper);
@@ -86,9 +91,8 @@ public class CartController {
     }
 
     @GetMapping("/list")
-    public R<CartDto> list(HttpSession session) {
-        Long userId = (Long) session.getAttribute("userId");
-        //Long userId=1599424913846833153L;
+    public R<CartDto> list() {
+        Long userId = BaseContext.getCurrentId();
         LambdaQueryWrapper<Cart> queryWrapper = new LambdaQueryWrapper<>();
         queryWrapper.eq(Cart::getUserId, userId);
         List<Cart> carts = cartService.list(queryWrapper);

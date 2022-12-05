@@ -8,6 +8,7 @@ package homework.ultimatemall.controller;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.update.LambdaUpdateWrapper;
+import homework.ultimatemall.common.BaseContext;
 import homework.ultimatemall.common.R;
 import homework.ultimatemall.dto.OrderDto;
 import homework.ultimatemall.entity.Item;
@@ -22,7 +23,6 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpSession;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
@@ -42,8 +42,8 @@ public class OrderController {
     private ItemService itemService;
 
     @PostMapping("/add")
-    public R<String> add(@RequestBody OrderDto orderDto, HttpSession session) {
-        Long userId = (Long) session.getAttribute("userId");
+    public R<String> add(@RequestBody OrderDto orderDto) {
+        Long userId = BaseContext.getCurrentId();
         Order order = new Order();
         order.setUserId(userId);
         order.setOrderAmount(orderDto.getAmount());
@@ -74,8 +74,8 @@ public class OrderController {
 
 
     @GetMapping("/list")
-    public R<List<OrderDto>> getOrderListByUserId(HttpSession session) {
-        Long userId = (Long) session.getAttribute("userId");
+    public R<List<OrderDto>> getOrderListByUserId() {
+        Long userId = BaseContext.getCurrentId();
         LambdaQueryWrapper<Order> queryWrapper = new LambdaQueryWrapper<>();
         queryWrapper.eq(Order::getUserId, userId);
         return getList(queryWrapper);
@@ -113,6 +113,8 @@ public class OrderController {
             orderDto.setOrderId(orderId);
             orderDto.setAddressId(obj.getAddressId());
             orderDto.setAmount(obj.getOrderAmount());
+            orderDto.setOrderTime(obj.getOrderTime());
+            orderDto.setOrderState(obj.getOrderState());
 
             LambdaQueryWrapper<OrderDetail> wrapper = new LambdaQueryWrapper<>();
             wrapper.eq(OrderDetail::getOrderId, orderId);
