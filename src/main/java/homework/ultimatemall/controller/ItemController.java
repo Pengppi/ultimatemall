@@ -6,9 +6,9 @@
  **/
 package homework.ultimatemall.controller;
 
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import homework.ultimatemall.common.R;
 import homework.ultimatemall.entity.Item;
+import homework.ultimatemall.entity.Kind;
 import homework.ultimatemall.service.ItemService;
 import homework.ultimatemall.service.KindService;
 import lombok.extern.slf4j.Slf4j;
@@ -16,7 +16,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/item")
@@ -35,10 +34,7 @@ public class ItemController {
     }
 
     @GetMapping("/kindList")
-    public R<List<Object>> getItemList() {
-        QueryWrapper<Item> queryWrapper = new QueryWrapper<>();
-        queryWrapper.select("distinct item_kind");
-        List<Object> objects = itemService.listObjs(queryWrapper);
-        return R.success(objects);
+    public R<List<Kind>> getItemList() {
+        return R.success(kindService.list());
     }
 }

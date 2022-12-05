@@ -15,7 +15,7 @@ import lombok.Data;
 @Data
 public class Address extends Model<Address> {
     @TableId(type = IdType.ASSIGN_ID)
-    private String addressId;
+    private Long addressId;
 
     private String userId;
 

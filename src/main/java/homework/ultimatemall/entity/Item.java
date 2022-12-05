@@ -18,7 +18,7 @@ import java.io.Serializable;
 public class Item extends Model<Item> {
 
     @TableId(type = IdType.ASSIGN_ID)
-    private String itemId;
+    private Long itemId;
 
     private String itemName;
 
