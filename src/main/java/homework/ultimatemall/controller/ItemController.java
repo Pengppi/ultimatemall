@@ -24,17 +24,12 @@ public class ItemController {
     @Autowired
     private ItemService itemService;
 
-    @Autowired
-    private KindService kindService;
-
     @PostMapping("/add")
     public R<String> add(@RequestBody Item item) {
         itemService.save(item);
         return R.success("添加成功");
     }
 
-    @GetMapping("/kindList")
-    public R<List<Kind>> getItemList() {
-        return R.success(kindService.list());
-    }
+
+
 }
