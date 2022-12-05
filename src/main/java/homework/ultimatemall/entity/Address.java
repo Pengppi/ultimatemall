@@ -17,7 +17,7 @@ public class Address extends Model<Address> {
     @TableId(type = IdType.ASSIGN_ID)
     private Long addressId;
 
-    private String userId;
+    private Long userId;
 
     private String userAddress;
 
