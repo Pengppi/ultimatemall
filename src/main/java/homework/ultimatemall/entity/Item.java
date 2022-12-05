@@ -6,6 +6,7 @@ import com.baomidou.mybatisplus.extension.activerecord.Model;
 import lombok.Data;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 
 /**
  * (Item)表实体类
@@ -22,7 +23,7 @@ public class Item extends Model<Item> {
 
     private String itemName;
 
-    private String itemPrice;
+    private BigDecimal itemPrice;
 
     private String itemKind;
 
@@ -33,5 +34,7 @@ public class Item extends Model<Item> {
     private Integer itemSell;
 
     private String itemDescription;
+
+    private Integer itemState;
 }
 
