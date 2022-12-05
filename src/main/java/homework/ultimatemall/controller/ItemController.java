@@ -38,7 +38,7 @@ public class ItemController {
     }
 
     @DeleteMapping("/{id}")
-    public R<String> delete(@PathVariable Integer id) {
+    public R<String> delete(@PathVariable Long id) {
         itemService.removeById(id);
         return R.success("删除成功");
     }
