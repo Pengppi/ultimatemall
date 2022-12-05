@@ -15,5 +15,11 @@ import org.springframework.stereotype.Service;
 @Service("itemService")
 public class ItemServiceImpl extends ServiceImpl<ItemDao, Item> implements ItemService {
 
+    @Override
+    public void updateSellNum(Long itemId, Integer itemNum) {
+        Item item = this.getById(itemId);
+        item.setItemSell(item.getItemSell() + itemNum);
+        this.updateById(item);
+    }
 }
 

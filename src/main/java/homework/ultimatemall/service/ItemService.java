@@ -11,5 +11,6 @@ import homework.ultimatemall.entity.Item;
  */
 public interface ItemService extends IService<Item> {
 
+    void updateSellNum(Long itemId, Integer itemNum);
 }
 

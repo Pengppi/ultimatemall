@@ -19,16 +19,15 @@ import java.util.Date;
 @Data
 public class Order extends Model<Order> {
 
-    @TableId(type = IdType.ASSIGN_ID)
-    private Long orderId;
+    private String orderId;
 
-    private String cartId;
+    private Long userId;
 
-    private String addressId;
+    private Long addressId;
 
     private BigDecimal orderAmount;
 
-    private Integer orderPaystate;
+    private Integer orderState;
 
     private LocalDateTime orderTime;
 }
