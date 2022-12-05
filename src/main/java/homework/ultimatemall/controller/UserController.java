@@ -87,4 +87,10 @@ public class UserController {
         }
         return R.error("用户名或密码错误");
     }
+
+    @PostMapping("/logout")
+    public R<String> logout(HttpSession session) {
+        session.removeAttribute("user");
+        return R.success("退出成功");
+    }
 }

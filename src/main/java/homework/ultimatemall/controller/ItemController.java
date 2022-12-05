@@ -8,9 +8,7 @@ package homework.ultimatemall.controller;
 
 import homework.ultimatemall.common.R;
 import homework.ultimatemall.entity.Item;
-import homework.ultimatemall.entity.Kind;
 import homework.ultimatemall.service.ItemService;
-import homework.ultimatemall.service.KindService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -29,7 +27,5 @@ public class ItemController {
         itemService.save(item);
         return R.success("添加成功");
     }
-
-
 
 }
