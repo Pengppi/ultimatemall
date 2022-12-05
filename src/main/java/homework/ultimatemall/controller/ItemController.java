@@ -28,4 +28,10 @@ public class ItemController {
         return R.success("添加成功");
     }
 
+    @PutMapping
+    public R<String> update(@RequestBody Item item) {
+        itemService.updateById(item);
+        return R.success("修改成功");
+    }
+
 }
