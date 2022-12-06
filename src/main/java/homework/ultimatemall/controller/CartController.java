@@ -59,8 +59,8 @@ public class CartController {
         return R.success("添加成功");
     }
 
-    @PutMapping("/{itemId}")
-    public R<String> update(@PathVariable Long itemId) {
+    @PutMapping("/{itemId}/{num}")
+    public R<String> update(@PathVariable Long itemId, @PathVariable Integer num) {
         LambdaQueryWrapper<Cart> queryWrapper = new LambdaQueryWrapper<>();
         Long userId = BaseContext.getCurrentId();
         queryWrapper.eq(Cart::getUserId, userId);
@@ -69,12 +69,15 @@ public class CartController {
         if (cart == null) {
             return R.error("购物车中没有该商品");
         } else {
-            int num = cart.getItemNum();
-            if (num == 1) {
-                cartService.removeById(cart);
+            int itemNum = cart.getItemNum();
+            if (num >= itemNum) {
+                cartService.remove(queryWrapper);
             } else {
-                cart.setItemNum(num - 1);
-                cartService.updateById(cart);
+                LambdaUpdateWrapper<Cart> updateWrapper = new LambdaUpdateWrapper<>();
+                updateWrapper.eq(Cart::getUserId, userId);
+                updateWrapper.eq(Cart::getItemId, itemId);
+                updateWrapper.set(Cart::getItemNum, cart.getItemNum() - num);
+                cartService.update(updateWrapper);
             }
         }
         return R.success("修改成功");

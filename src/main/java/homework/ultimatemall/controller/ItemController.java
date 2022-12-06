@@ -44,7 +44,7 @@ public class ItemController {
     }
 
     @PutMapping("/{id}")
-    public R<String> updataStatus(@PathVariable Integer id) {
+    public R<String> updataStatus(@PathVariable Long id) {
         Item item = itemService.getById(id);
         item.setItemState(item.getItemState() ^ 1);
         itemService.updateById(item);
@@ -53,7 +53,7 @@ public class ItemController {
 
 
     @GetMapping("/{id}")
-    public R<Item> getItemById(@PathVariable Integer id) {
+    public R<Item> getItemById(@PathVariable Long id) {
         return R.success(itemService.getById(id));
     }
 
@@ -75,7 +75,8 @@ public class ItemController {
         return R.success(itemService.list(queryWrapper));
     }
 
-
-
-
+    @GetMapping("/list")
+    public R<List<Item>> getItemList() {
+        return R.success(itemService.list());
+    }
 }
