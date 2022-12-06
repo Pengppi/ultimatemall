@@ -20,12 +20,10 @@ import homework.ultimatemall.service.OrderService;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
 import java.util.List;
-import java.util.UUID;
 import java.util.stream.Collectors;
 
 @RestController
@@ -50,12 +48,10 @@ public class OrderController {
         order.setAddressId(orderDto.getAddressId());
         order.setOrderState(0);
         order.setOrderTime(LocalDateTime.now());
-        String orderId = UUID.randomUUID().toString();
-        order.setOrderId(orderId);
         orderService.save(order);
         orderDto.getItems().forEach(item -> {
             OrderDetail orderDetail = new OrderDetail();
-            orderDetail.setOrderId(orderId);
+            orderDetail.setOrderId(order.getOrderId());
             orderDetail.setItemId(item.getItemId());
             orderDetail.setItemNum(item.getItemNum());
             orderDetailService.save(orderDetail);
@@ -66,7 +62,7 @@ public class OrderController {
     @PostMapping("/list")
     public R<List<OrderDto>> getOrderListByCondition(@RequestBody Order order) {
         LambdaQueryWrapper<Order> queryWrapper = new LambdaQueryWrapper<>();
-        queryWrapper.eq(StringUtils.hasText(order.getOrderId()), Order::getOrderId, order.getOrderId());
+        queryWrapper.eq(order.getOrderId() != null, Order::getOrderId, order.getOrderId());
         queryWrapper.eq(order.getUserId() != null, Order::getUserId, order.getUserId());
         queryWrapper.eq(order.getOrderState() != null, Order::getOrderState, order.getOrderState());
         return getList(queryWrapper);
@@ -82,15 +78,17 @@ public class OrderController {
     }
 
 
+    @Transactional
     @DeleteMapping("/{orderId}")
-    public R<String> delete(@PathVariable("orderId") String id) {
+    public R<String> delete(@PathVariable("orderId") Long id) {
         orderService.removeById(id);
+        orderDetailService.remove(new LambdaQueryWrapper<OrderDetail>().eq(OrderDetail::getOrderId, id));
         return R.success("删除成功");
     }
 
     @Transactional
     @PutMapping("/{orderId}/{newState}")
-    public R<String> update(@PathVariable("orderId") String orderId, @PathVariable("newState") Integer newState) {
+    public R<String> update(@PathVariable("orderId") Long orderId, @PathVariable("newState") Integer newState) {
         LambdaUpdateWrapper<Order> updateWrapper = new LambdaUpdateWrapper<>();
         updateWrapper.eq(Order::getOrderId, orderId);
         updateWrapper.set(Order::getOrderState, newState);
@@ -108,7 +106,7 @@ public class OrderController {
     @NotNull
     private R<List<OrderDto>> getList(LambdaQueryWrapper<Order> queryWrapper) {
         List<OrderDto> orderDtoList = orderService.list(queryWrapper).stream().map(obj -> {
-            String orderId = obj.getOrderId();
+            Long orderId = obj.getOrderId();
             OrderDto orderDto = new OrderDto();
             orderDto.setOrderId(orderId);
             orderDto.setAddressId(obj.getAddressId());

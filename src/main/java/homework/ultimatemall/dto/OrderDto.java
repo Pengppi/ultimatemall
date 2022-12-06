@@ -14,7 +14,7 @@ import java.time.LocalDateTime;
 public class OrderDto extends CartDto {
     private Long addressId;
 
-    private String orderId;
+    private Long orderId;
 
     private LocalDateTime orderTime;
 

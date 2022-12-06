@@ -8,7 +8,7 @@ import org.apache.ibatis.annotations.Mapper;
  * (Order)表数据库访问层
  *
  * @author makejava
- * @since 2022-12-04 21:49:53
+ * @since 2022-12-06 15:31:17
  */
 @Mapper
 public interface OrderDao extends BaseMapper<Order> {

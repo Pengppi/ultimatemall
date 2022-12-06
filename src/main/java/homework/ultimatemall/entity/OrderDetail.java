@@ -18,6 +18,6 @@ public class OrderDetail extends Model<OrderDetail> {
 
     private Integer itemNum;
 
-    private String orderId;
+    private Long orderId;
 }
 

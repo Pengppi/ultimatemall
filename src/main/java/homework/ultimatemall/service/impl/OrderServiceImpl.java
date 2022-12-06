@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
  * @author makejava
  * @since 2022-12-04 21:49:53
  */
-@Service("orderService")
+@Service
 public class OrderServiceImpl extends ServiceImpl<OrderDao, Order> implements OrderService {
 
 }
