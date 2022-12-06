@@ -27,8 +27,9 @@ import java.util.UUID;
 @Slf4j
 public class CommonController {
 
-    @Value("${ultimateMall.path}")
+    @Value("${ultimateMall.imgPath}")
     private String basePath;
+
 
     @PostMapping("/upload")
     public R<String> upload(MultipartFile file) {
@@ -39,8 +40,9 @@ public class CommonController {
         String suffix = originalFilename.substring(originalFilename.lastIndexOf("."));
         //使用UUID重新生成文件名，防止文件名称重复造成文件覆盖
         String fileName = UUID.randomUUID().toString() + suffix;
+        String path = System.getProperty("user.dir") + basePath;
         //创建一个目录对象
-        File dir = new File(basePath);
+        File dir = new File(path);
         //判断当前目录是否存在
         if (!dir.exists()) {
             //如果不存在，则创建目录
@@ -48,7 +50,7 @@ public class CommonController {
         }
         try {
             //将临时文件转存到指定位置
-            file.transferTo(new File(basePath + fileName));
+            file.transferTo(new File(path + fileName));
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -59,7 +61,8 @@ public class CommonController {
     public void download(String fileName, HttpServletResponse response) {
         try {
             //输入流，通过输入流读取文件内容
-            FileInputStream fileInputStream = new FileInputStream(new File(basePath + fileName));
+            String path = System.getProperty("user.dir") + basePath;
+            FileInputStream fileInputStream = new FileInputStream(new File(path + fileName));
             //输出流，通过输出流将文件写回浏览器，在浏览器展示图片
             ServletOutputStream outputStream = response.getOutputStream();
 
