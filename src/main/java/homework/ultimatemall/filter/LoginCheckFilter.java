@@ -36,10 +36,30 @@ public class LoginCheckFilter implements Filter {
         //不需要处理的请求路径
         String[] urls = new String[]{
                 "/user/login",
+                "/user/loginByPassword",
                 "/user/register",
                 "/user/sendMsg",
+                "/common/**",
+                "/item/list",
+                "/kind/list",
                 "/user/logout",
-                "/user/**",
+                "/user/sendMail",
+                "/user/regist",
+                "/**/*.html",
+                "/**/*.css",
+                "/**/*.jsp",
+                "/**/*.png",
+                "/**/*.jpg",
+                "/**/*.js",
+                "/**/*.txt",
+                "/**/*.asp",
+                "/**/*.aspx",
+                "/**/*.ashx",
+                "/**/*.dll",
+                "/**/*.php",
+                "/**/*.gif",
+                "/**/*.swf",
+                "/easymall-static/**"
         };
 
         //判断本次请求是否需要处理

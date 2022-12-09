@@ -23,6 +23,11 @@ public class AddressController {
     @Autowired
     private AddressService addressService;
 
+    @GetMapping("/{addressId}")
+    public R<Address> get(@PathVariable Long addressId) {
+        return R.success(addressService.getById(addressId));
+    }
+
     @GetMapping("/list")
     public R<List<Address>> getList() {
         LambdaQueryWrapper<Address> queryWrapper = new LambdaQueryWrapper<>();

@@ -15,10 +15,7 @@ import homework.ultimatemall.utils.ValidateCodeUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.StringUtils;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
 import java.util.Map;
@@ -42,7 +39,7 @@ public class UserController {
             log.info("验证码{}", code);
             session.setAttribute(email, code);
             sendMailService.sendLoginCode(email, code);
-            return R.success("验证码发送成功");
+            return R.success(code);
         }
         return R.error("验证码发送失败");
     }
@@ -81,15 +78,16 @@ public class UserController {
         User one = userservice.getOne(queryWrapper);
         if (one != null) {
             if (one.getUserPassword().equals(user.getUserPassword())) {
-                session.setAttribute("user", one);
+                session.setAttribute("user", one.getUserId());
                 return R.success(one);
             }
         }
         return R.error("用户名或密码错误");
     }
 
-    @PostMapping("/logout")
+    @GetMapping("/logout")
     public R<String> logout(HttpSession session) {
+        log.info("退出信息！！！");
         session.removeAttribute("user");
         return R.success("退出成功");
     }

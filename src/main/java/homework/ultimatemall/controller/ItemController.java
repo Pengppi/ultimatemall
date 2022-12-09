@@ -17,6 +17,7 @@ import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/item")
@@ -51,6 +52,16 @@ public class ItemController {
         return R.success("修改成功");
     }
 
+    @PutMapping("/update")
+    public R<String> updateStatusByIds(@RequestParam List<Long> ids) {
+        List<Item> items = ids.stream().map(id -> {
+            Item item = itemService.getById(id);
+            item.setItemState(item.getItemState() ^ 1);
+            return item;
+        }).collect(Collectors.toList());
+        itemService.updateBatchById(items);
+        return R.success("修改成功");
+    }
 
     @GetMapping("/{id}")
     public R<Item> getItemById(@PathVariable Long id) {
