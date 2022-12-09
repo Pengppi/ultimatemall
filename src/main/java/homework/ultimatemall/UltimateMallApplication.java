@@ -8,7 +8,7 @@ import org.springframework.boot.web.servlet.ServletComponentScan;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @Slf4j
-//@ServletComponentScan
+@ServletComponentScan
 @SpringBootApplication
 @EnableTransactionManagement
 public class UltimateMallApplication {

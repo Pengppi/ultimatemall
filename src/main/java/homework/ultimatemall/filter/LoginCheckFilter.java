@@ -59,7 +59,7 @@ public class LoginCheckFilter implements Filter {
                 "/**/*.php",
                 "/**/*.gif",
                 "/**/*.swf",
-                "/easymall-static/**"
+                "/easymall-static/**",
         };
 
         //判断本次请求是否需要处理
