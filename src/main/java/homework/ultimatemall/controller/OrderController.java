@@ -74,6 +74,7 @@ public class OrderController {
         Long userId = BaseContext.getCurrentId();
         LambdaQueryWrapper<Order> queryWrapper = new LambdaQueryWrapper<>();
         queryWrapper.eq(Order::getUserId, userId);
+        queryWrapper.orderByDesc(Order::getOrderTime);
         return getList(queryWrapper);
     }
 
