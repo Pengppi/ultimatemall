@@ -48,14 +48,17 @@ a{
 /*商品信息*/
 #prod_content{
 	width:1200px;
+	display: flex;
+	flex-wrap: wrap;
 }
 #prod_content #prod_div{
 	width:222px;
 	height:347px;
 	border: 1px solid #D4D4D4;
 	margin-top:15px;
-	margin-right:18px;
-	float:left;
+	margin-right:16px;
+
+	/*float:left;*/
 }
 
 #prod_content #prod_div:nth-child(5),#prod_content #prod_div:nth-child(10){
@@ -74,7 +77,7 @@ a{
 	font-size:22px;
 	margin-top:22px;
 	text-align: center;
-	color:#CC0000;
+	color:#FF9923;
 	
 }
 #prod_content #gotocart_div{
@@ -94,7 +97,7 @@ a{
 	text-decoration: none;
 }
 #gotocart_div a:hover{
-	background-color: #FF0000;
+	background-color: #FF9923;
 	color:#fff;
 }
 

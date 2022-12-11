@@ -24,7 +24,7 @@
                 success : function(data){
                     if(data.status == 200){
                         var _data = JSON.parse(data.data);//jackson
-                        var html =_data.userName+"，欢迎来到京淘！<a href=\"http://www.easymall.com/user/logout\" class=\"link-logout\">[退出]</a>  \|<a href=\"http://www.easymall.com/page/manage\" class=\"link-logout\">[后台]</a>";
+                        var html =_data.userName+"，欢迎来到UltimateMall！<a href=\"http://www.easymall.com/user/logout\" class=\"link-logout\">[退出]</a>  \|<a href=\"http://www.easymall.com/page/manage\" class=\"link-logout\">[后台]</a>";
                         $("#loginbar").html(html);
                     }
                 },

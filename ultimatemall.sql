@@ -11,16 +11,16 @@
  Target Server Version : 80027 (8.0.27)
  File Encoding         : 65001
 
- Date: 07/12/2022 17:41:49
+ Date: 11/12/2022 10:58:20
 */
+
+DROP Database IF EXISTS `ultimatemall`;
+CREATE DATABASE `ultimatemall`;
+USE `ultimatemall`;
+
 
 SET NAMES utf8mb4;
 SET FOREIGN_KEY_CHECKS = 0;
-
-drop database ultimatemall;
-CREATE DATABASE IF NOT EXISTS ultimatemall DEFAULT CHARACTER SET utf8;
-USE ultimatemall;
-
 -- ----------------------------
 -- Table structure for address
 -- ----------------------------
@@ -34,7 +34,7 @@ CREATE TABLE `address`  (
   `label` varchar(35) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `is_default` tinyint(1) NULL DEFAULT 0,
   PRIMARY KEY (`address_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1600016611471908867 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 1600774042250391555 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of address
@@ -43,6 +43,7 @@ INSERT INTO `address` VALUES (1600015257550577666, '1599423857683345409', '福�
 INSERT INTO `address` VALUES (1600015555815923713, '1599423857683345409', '甘肃省包头市-', '傅军', '13438385260', 'quis officia culpa est aliquip', 0);
 INSERT INTO `address` VALUES (1600016178556821505, '1599423857683345409', '内蒙古自治区泰州市历城区', '刘洋', '19827341152', 'dolore', 90);
 INSERT INTO `address` VALUES (1600016611471908866, '1599423857683345409', '江苏省澳门半岛河西区', '常秀英', '18112772370', 'cillum sed ea', 0);
+INSERT INTO `address` VALUES (1600774042250391554, NULL, '香港特别行政区白城市山海关区', '姚涛', '18141175044', 'ex ad ut do', 29);
 
 -- ----------------------------
 -- Table structure for cart
@@ -76,18 +77,26 @@ CREATE TABLE `item`  (
   `item_description` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `item_state` tinyint(1) NOT NULL DEFAULT 0,
   PRIMARY KEY (`item_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1599985774248349699 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 1599985774248349709 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of item
 -- ----------------------------
 INSERT INTO `item` VALUES (1599436757701533697, '用照会却', 42.00, '军火', 'http://lovsovrtj.tk/xjdkwufd', 79, NULL, 'reprehenderit nulla labore sit', 0);
 INSERT INTO `item` VALUES (1599437023712681986, '感看小天道农战', 2.00, '能源', 'http://hfpeboxjg.cx/qttokfiv', 28, NULL, 'laboris', 0);
-INSERT INTO `item` VALUES (1599437174372081665, '十广直石音高已', 71.00, 'distinct test', 'http://ifbpl.mt/nrierir', 42, NULL, 'quis elit', 0);
+INSERT INTO `item` VALUES (1599437174372081665, '十广直石音高已', 71.00, 'distinct test', 'http://ifbpl.mt/nrierir', 42, NULL, 'quis elit', 1);
 INSERT INTO `item` VALUES (1599437205032443906, '上低量', 74.00, 'distinct test', 'http://bocpaqkpmw.mz/fkeuhdv', 52, NULL, 'occaecat nostrud sed', 0);
 INSERT INTO `item` VALUES (1599437259025719298, '调都自照于参好', 56.00, 'elit nostrud', 'http://zfhikfqm.as/kideqd', 35, 88, 'non voluptate', 0);
 INSERT INTO `item` VALUES (1599437302667452417, '济持团于', 72.00, 'distinct', 'http://gbrg.mo/ttbdnzu', 14, NULL, 'ullamco fugiat tempor Excepteur', 0);
 INSERT INTO `item` VALUES (1599979933961039873, '标消积', 9.00, '军火', 'ee04a05a-1230-46b6-8ad5-1a95b140fff3.png', 38, 0, 'sint sed id Lorem', 0);
+INSERT INTO `item` VALUES (1599985774248349701, '三星手机', 1999.00, '数码', '217.jpg', 100, 50, 'sint sed id Lorem', 0);
+INSERT INTO `item` VALUES (1599985774248349702, '荣耀盒子', 1999.00, '数码', 'adv_l1.jpg', 100, 50, 'sint sed id Lorem', 0);
+INSERT INTO `item` VALUES (1599985774248349703, '耳机', 1999.00, '数码', 'adv_l2.jpg', 100, 50, 'sint sed id Lorem', 0);
+INSERT INTO `item` VALUES (1599985774248349704, '荣耀手机', 1999.00, '数码', 'adv1.jpg', 100, 50, 'sint sed id Lorem', 0);
+INSERT INTO `item` VALUES (1599985774248349705, '荣耀手机2', 1999.00, '数码', 'adv2.jpg', 100, 50, 'sint sed id Lorem', 0);
+INSERT INTO `item` VALUES (1599985774248349706, '荣耀手机3', 1999.00, '数码', 'adv3.jpg', 100, 50, 'sint sed id Lorem', 0);
+INSERT INTO `item` VALUES (1599985774248349707, '荣耀手机4', 1999.00, '数码', 'adv4.jpg', 100, 50, 'sint sed id Lorem', 0);
+INSERT INTO `item` VALUES (1599985774248349708, '华为盒子', 1999.00, '数码', 'banner_big.jpg', 100, 50, 'sint sed id Lorem', 0);
 
 -- ----------------------------
 -- Table structure for kind

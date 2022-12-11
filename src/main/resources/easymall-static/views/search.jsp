@@ -8,7 +8,7 @@
 <head>
 <meta http-equiv="Cache-Control" content="max-age=300" />
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>${query} - 商品搜索 - 京淘</title>
+<title>${query} - 商品搜索 - UltimateMall</title>
 <meta name="Keywords" content="java,京淘java" />
 <meta name="description" content="在京淘中找到了29910件java的类似商品，其中包含了“图书”，“电子书”，“教育音像”，“骑行运动”等类型的java的商品。" />
 <link rel="stylesheet" type="text/css" href="${app}/css/base.css" media="all" />
@@ -57,7 +57,7 @@ ${fn:replace(item.productName,query,'<span class=\"red\">'.concat(query).concat(
 		<i>京淘价：</i>
 		<strong>￥<value="${item.productPrice }"/></strong>
 	</div>
-	<div class="service">由 京淘 发货</div>
+	<div class="service">由 UltimateMall 发货</div>
 	<div class="extra">
 		<span class="star"><span class="star-white"><span class="star-yellow h5">&nbsp;</span></span></span>
 	</div>

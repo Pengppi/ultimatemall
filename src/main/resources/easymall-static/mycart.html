@@ -213,7 +213,23 @@
                         var prodHtml="product-info.html?productId="+productId;
                         var inputId="hid_"+productId;
                         var itemMoney=productPrice*num;
-                        $("#carts").append("<div id='prods'><input name='prodC' type='checkbox' value=''/><a href='"+prodHtml+"'><img src='"+productImage+"' width='80' height='90'/></a><a href='"+prodHtml+"'><span id='prods_name'>"+productName+"</span></a><span id='prods_price'>"+productPrice+"元</span><span><input type='hidden' id='"+inputId+"' value='"+num+"'/><input class='buyNumInp1' id='"+productId+"' type='text' value='"+num+"' onblur='inputNum(\""+productId+"\",\""+null+"\")'/></span><span id='prods_money'>"+itemMoney+"</span ><span id='prods_del'><a href='javascript:void(0)' class='delNum' onclick='del(\""+productId+"\",\""+null+"\")'>删除</a></span></div>");
+                        $("#carts").append("<div id='prods'>" +
+                            "<input name='prodC' type='checkbox' value=''/>" +
+                            "<a href='" + prodHtml + "'>" +
+                                "<img src='" + productImage + "' width='80' height='90'/>" +
+                            "</a>" +
+                            "<a href='" + prodHtml + "'>" +
+                                "<div id='prods_name'>" + productName + "</div>" +
+                            "</a>" +
+                                "<div id='prods_price'>" + productPrice + "元</div>" +
+                            "<span>" +
+                                "<input type='hidden' id='" + inputId + "' value='" + num + "'/>" +
+                                "<input class='buyNumInp1' id='" + productId + "' type='text' value='" + num + "' onblur='inputNum(\"" + productId + "\",\"" + null + "\")'/>" +
+                            "</span>" +
+                            "<div id='prods_money'>" + itemMoney + "</div>" +
+                            "<div id='prods_del'>" +
+                                "<a href='javascript:void(0)' class='delNum' onclick='del(\"" + productId + "\",\"" + null + "\")'>删除</a>" +
+                            "</div></div>");
                     }
                     var money=_data.data.amount;
 
