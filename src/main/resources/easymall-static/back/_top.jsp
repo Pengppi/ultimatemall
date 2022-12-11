@@ -9,6 +9,6 @@
   </style>
   </head>
   <body>
-  	EasyMall!后台管理后台！
+  	UltimateMall!后台管理后台！
   </body>
 </html>

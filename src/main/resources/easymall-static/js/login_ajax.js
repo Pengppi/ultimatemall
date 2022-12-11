@@ -1,6 +1,6 @@
 //@ sourceURL=login_ajax.js
 $(function(){
-	
+
 	//给form表单添加submit事件
 	$("form").submit(function(){
 		return login();

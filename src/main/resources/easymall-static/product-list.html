@@ -92,7 +92,7 @@
             //         //alert("好啊2");
             //         if(data.status == 200){
             //             var _data = JSON.parse(data.data);//jackson
-            //             var html =_data.userName+"，欢迎来到EasyMall！<a href=\"javascript:void(0)\" class=\"link-logout\" onclick='logout()'>[退出]</a>  \|<a href=\"http://www.easymall.com/manage.html\" class=\"link-logout\">[后台]</a>";
+            //             var html =_data.userName+"，欢迎来到EasyMall！<a href=\"javascript:void(0)\" class=\"link-logout\" onclick='logout()'>[退出]</a>  \|<a href=\"manage.html\" class=\"link-logout\">[后台]</a>";
             //             userId=_data.userId;
             //
             //             $("#loginbar").html(html);
@@ -114,7 +114,7 @@
                    userPassword = arrSmall[1];
            }
            if (userName != "" && userPassword != "") {
-               var html = userName+"，欢迎来到京淘！<a href=\"javascript:void(0)\" class=\"link-logout\" onclick='logout()'>[退出]</a>  \|<a href=\"http://www.easymall.com/manage.html\" class=\"link-logout\">[后台]</a>";
+               var html = userName+"，欢迎来到UltimateMall！<a href=\"javascript:void(0)\" class=\"link-logout\" onclick='logout()'>[退出]</a>  \| <a href=\"manage.html\" class=\"link-logout\">[后台]</a> \| <a href=\"service/service.html\" class=\"link-logout\">[客服助手]</a>";
                $("#loginbar").html(html);
            }
         }
@@ -158,7 +158,7 @@
                     // }
                 },
                 error : function(){
-                    alert("请求失败");
+                    alert("商品请求失败");
                 }
             });
         }
@@ -181,7 +181,7 @@
     <div id="line1">
         <div id="content">
             <li class="fore1" id="loginbar" clstag="homepage|keycount|home2013|01b">
-                <span id="head_span"\\\x><a href="login.html">登录</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="regist.html">注册</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="manage.html">后台</a></span>
+                <span id="head_span"\\\x><a href="login.html">登录</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="regist.html">注册</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="manage.html">后台</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="service/service.html">客服助手</a></span>
 
             </li>
         </div>
@@ -218,7 +218,6 @@
     <div id="prod_content">
     </div>
 </div>
-
 
 
 

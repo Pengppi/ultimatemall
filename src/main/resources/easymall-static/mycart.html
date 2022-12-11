@@ -46,7 +46,7 @@
                     userPassword = arrSmall[1];
             }
             if (userName != "" && userPassword != "") {
-                var html = userName+"，欢迎来到京淘！<a href=\"javascript:void(0)\" class=\"link-logout\" onclick='logout()'>[退出]</a>  \|<a href=\"http://www.easymall.com/manage.html\" class=\"link-logout\">[后台]</a>";
+                var html = userName+"，欢迎来到UltimateMall！<a href=\"javascript:void(0)\" class=\"link-logout\" onclick='logout()'>[退出]</a>  \| <a href=\"manage.html\" class=\"link-logout\">[后台]</a> \| <a href=\"service/service.html\" class=\"link-logout\">[客服助手]</a>";
                 $("#loginbar").html(html);
             }
 
@@ -72,7 +72,7 @@
             //                 alert("啥也别说了，你的用户超时了,赶紧查查redis还有数据没有");
             //                 window.location.href="./login.html";
             //                 return;}
-            //             var html =_data.userName+"，欢迎来到京淘！<a href=\"javascript:void(0)\" class=\"link-logout\" onclick='logout()'>[退出]</a>  \|<a href=\"http://www.easymall.com/manage.html\" class=\"link-logout\">[后台]</a>";
+            //             var html =_data.userName+"，欢迎来到UltimateMall！<a href=\"javascript:void(0)\" class=\"link-logout\" onclick='logout()'>[退出]</a>  \|<a href=\"manage.html\" class=\"link-logout\">[后台]</a>";
             //             userId=_data.userId;
             //             $("#loginbar").html(html);
             //             query(userId);
@@ -213,7 +213,23 @@
                         var prodHtml="product-info.html?productId="+productId;
                         var inputId="hid_"+productId;
                         var itemMoney=productPrice*num;
-                        $("#carts").append("<div id='prods'><input name='prodC' type='checkbox' value=''/><a href='"+prodHtml+"'><img src='"+productImage+"' width='80' height='90'/></a><a href='"+prodHtml+"'><span id='prods_name'>"+productName+"</span></a><span id='prods_price'>"+productPrice+"元</span><span><input type='hidden' id='"+inputId+"' value='"+num+"'/><input class='buyNumInp1' id='"+productId+"' type='text' value='"+num+"' onblur='inputNum(\""+productId+"\",\""+null+"\")'/></span><span id='prods_money'>"+itemMoney+"</span ><span id='prods_del'><a href='javascript:void(0)' class='delNum' onclick='del(\""+productId+"\",\""+null+"\")'>删除</a></span></div>");
+                        $("#carts").append("<div id='prods'>" +
+                            "<input name='prodC' type='checkbox' value=''/>" +
+                            "<a href='" + prodHtml + "'>" +
+                                "<img src='" + productImage + "' width='80' height='90'/>" +
+                            "</a>" +
+                            "<a href='" + prodHtml + "'>" +
+                                "<div id='prods_name'>" + productName + "</div>" +
+                            "</a>" +
+                                "<div id='prods_price'>" + productPrice + "元</div>" +
+                            "<span>" +
+                                "<input type='hidden' id='" + inputId + "' value='" + num + "'/>" +
+                                "<input class='buyNumInp1' id='" + productId + "' type='text' value='" + num + "' onblur='inputNum(\"" + productId + "\",\"" + null + "\")'/>" +
+                            "</span>" +
+                            "<div id='prods_money'>" + itemMoney + "</div>" +
+                            "<div id='prods_del'>" +
+                                "<a href='javascript:void(0)' class='delNum' onclick='del(\"" + productId + "\",\"" + null + "\")'>删除</a>" +
+                            "</div></div>");
                     }
                     var money=_data.data.amount;
 
@@ -277,7 +293,7 @@
     <div id="line1">
         <div id="content">
             <li class="fore1" id="loginbar" clstag="homepage|keycount|home2013|01b">
-                <span id="head_span"\\\x><a href="login.html">登录</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="regist.html">注册</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="manage.html">后台</a></span>
+                <span id="head_span"\\\x><a href="login.html">登录</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="regist.html">注册</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="manage.html">后台</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="service/service.html">客服助手</a></span>
 
             </li>
         </div>

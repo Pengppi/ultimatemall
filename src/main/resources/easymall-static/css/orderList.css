@@ -8,10 +8,13 @@ ul li{list-style:none;}
 .lf{float:left;}
 .rt{float:right;}
 /*---¶©µ¥ÁÐ±í----------------------------------------------------------------------*/
+
 .Order_information{
 	text-align:left;
 	width:1200px;
-	margin-bottom:16px;
+	/*margin-left:100px;*/
+	/*margin-bottom:16px;*/
+	margin: 0 auto 16px auto;
 }
 .Order_information dt{
 	background:#f3f3f3;
@@ -36,10 +39,10 @@ ul li{list-style:none;}
 .Order_price{
 	width:1200px;
 	text-align:right;
-	color:#F00;
+	color:#FF9923;
 	font-size:35px;
-	margin:18px 0px;
+	/*margin:18px 0px;*/
 	font-weight:bold;
 	border-bottom: 1px solid #CCC;
-	
+	margin: 18px auto
 }

@@ -19,37 +19,38 @@
 <body>
 <div style="padding:10px 10px 10px 10px">
     <form id="itemeEditForm" class="itemForm" method="post">
-        <input type="hidden" name="productId"/>
+        <input type="hidden" name="itemId"/>
+        <input type="hidden" name="itemSell"/>
         <table cellpadding="5">
             <tr>
                 <td>商品类目:</td>
                 <td>
-                    <input type="text" name="productCategory" style="width: 280px;"></input>
+                    <input type="text" name="itemKind" style="width: 280px;"></input>
                 </td>
             </tr>
             <tr>
                 <td>商品名称:</td>
-                <td><input class="easyui-textbox" type="text" name="productName" data-options="required:true" style="width: 280px;"></input></td>
+                <td><input class="easyui-textbox" type="text" name="itemName" data-options="required:true" style="width: 280px;"></input></td>
             </tr>
             <tr>
                 <td>商品价格:</td>
-                <td><input class="easyui-numberbox" type="text" name="productPrice" style="width: 280px;"></input>
+                <td><input class="easyui-numberbox" type="text" name="itemPrice" style="width: 280px;"></input>
                 </td>
             </tr>
             <tr>
                 <td>库存数量:</td>
-                <td><input class="easyui-numberbox" type="text" name="productNum" data-options="min:1,max:99999999,precision:0,required:true" /></td>
+                <td><input class="easyui-numberbox" type="text" name="itemNum" data-options="min:1,max:99999999,precision:0,required:true" /></td>
             </tr>
             <tr>
                 <td>商品图片:</td>
                 <td>
-                    <input type="text" name="productImgurl"/>
+                    <input type="text" name="itemUrl"/>
                 </td>
             </tr>
             <tr>
                 <td>商品描述:</td>
                 <td>
-                    <textarea style="width:800px;height:300px;" name="productDescription"></textarea>
+                    <textarea style="width:800px;height:300px;" name="itemDescription"></textarea>
                 </td>
             </tr>
         </table>
@@ -65,22 +66,43 @@
         itemEditEditor = KindEditorUtil.createEditor("#itemeEditForm [name=desc]");
     });
 
-    function submitForm(){
+    function submitForm() {
         if(!$('#itemeEditForm').form('validate')){
-            $.messager.alert('提示','表单还未填写完成!');
-            return ;
+        $.messager.alert('提示','表单还未填写完成!');
+        return ;
+    }
+    var itemId = $("input[name=itemId]").val();
+    var itemName = $("input[name=itemName]").val();
+    var itemPrice = $("input[name=itemPrice]").val();
+    var itemKind = $("input[name=itemKind]").val();
+    var itemUrl = $("input[name=itemUrl]").val();
+    var itemNum = $("input[name=itemNum]").val();
+    var itemDescription = $("input[name=itemDescription]").val();
+    var itemSell = $("input[name=itemSell]").val();
+    $.ajax({
+        type: "PUT", // 数据提交类型
+        url: "http://127.0.0.1/item", // 发送地址
+        // url: "http://127.0.0.1:4523/m1/2026934-0-default/item",
+        async: false,
+        data: JSON.stringify({
+            "itemId": itemId,
+            "itemName": itemName,
+            "itemPrice": parseFloat(itemPrice),
+            "itemKind": itemKind,
+            "itemUrl": itemUrl,
+            "itemNum": itemNum,
+            "itemSell": 0,
+            "itemDescription": itemDescription,
+            "itemState": itemSell,
+        }), //发送数据
+        contentType:'application/json;charset=UTF-8',
+        success:function (res) {
+            $.messager.alert('提示','修改商品成功!','info',function(){
+                $("#itemEditWindow").window('close');
+                $("#itemList").datagrid("reload");
+            });
         }
-        alert($("#itemeEditForm").serialize())
-        $.post("/products/update",$("#itemeEditForm").serialize(), function(data){
-            if(data.status == 200){
-                $.messager.alert('提示','修改商品成功!','info',function(){
-                    $("#itemEditWindow").window('close');
-                    $("#itemList").datagrid("reload");
-                });
-            }else{
-                alert(data.msg);
-            }
-        });
+    })
     }
 </script>
 </body>

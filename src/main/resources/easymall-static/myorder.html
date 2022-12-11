@@ -47,7 +47,7 @@
                 userPassword = arrSmall[1];
         }
         if (userName != "" && userPassword != "") {
-            var html = userName+"，欢迎来到京淘！<a href=\"javascript:void(0)\" class=\"link-logout\" onclick='logout()'>[退出]</a>  \|<a href=\"http://www.easymall.com/manage.html\" class=\"link-logout\">[后台]</a>";
+            var html = userName+"，欢迎来到UltimateMall！<a href=\"javascript:void(0)\" class=\"link-logout\" onclick='logout()'>[退出]</a>  \| <a href=\"manage.html\" class=\"link-logout\">[后台]</a> \| <a href=\"service/service.html\" class=\"link-logout\">[客服助手]</a>";
             $("#loginbar").html(html);
         }
 
@@ -74,7 +74,7 @@
         //                 alert("啥也别说了，你的用户超时了,赶紧查查redis还有数据没有");
         //                 window.location.href="./login.html";
         //                 return;}
-        //             var html =_data.userName+"，欢迎来到京淘！<a href=\"javascript:void(0)\" onclick='logout()'>[退出]</a>  \|<a href=\"http://www.easymall.com/manage.html\" >[后台]</a>";
+        //             var html =_data.userName+"，欢迎来到UltimateMall！<a href=\"javascript:void(0)\" onclick='logout()'>[退出]</a>  \|<a href=\"manage.html\" >[后台]</a>";
         //             userId=_data.userId;
         //             $("#loginbar").html(html);
         //             queryOrder(userId);
@@ -185,13 +185,16 @@
                         })
 
                         if(payState==0){
-                            $("#orders").append("<dl class='Order_information'><dt><h3>订单信息</h3></dt></dl><dd>订单编号:"+String(orderId)+"</br>下单时间:"+orderTime+"</br>订单金额:"+orderMoney+"</br>支付状态:<font color=\"red\">未支付</font><a href='javascript:void()' onclick='delOrder(\""+String(orderId)+"\",\""+1+"\") '><img src=\"img/orderList/sc.jpg\" width=\"69\" height=\"19\"></a><a href='javascript:void()' onclick='paybill(\""+String(orderId)+"\",\""+1+"\") '> <img src=\"img/orderList/zx.jpg\" width=\"69\" height=\"19\"></a><br />收货地址: "+orderReceiverinfo+"<br/>支付方式：在线支付</dd>");
+                            $("#orders").append("" +
+                                "<dl class='Order_information'>" +
+                                    "<dt><h3>订单信息</h3></dt>" +
+                                "</dl><dd>订单编号："+String(orderId)+"</br>下单时间："+orderTime+"</br>订单金额："+orderMoney+"</br>支付状态：<font color=\"red\">未支付</font><a href='javascript:void()' onclick='delOrder(\""+String(orderId)+"\",\""+1+"\") '><img src=\"img/orderList/sc.jpg\" width=\"69\" height=\"19\"></a><a href='javascript:void()' onclick='paybill(\""+String(orderId)+"\",\""+1+"\") '> <img src=\"img/orderList/zx.jpg\" width=\"69\" height=\"19\"></a><br />收货地址："+orderReceiverinfo+"<br/>支付方式：在线支付</dd>");
                         }else if(payState==1 || payState==2){
-                            $("#orders").append("<dl class='Order_information'><dt><h3>订单信息</h3></dt></dl><dd>订单编号:"+String(orderId)+"</br>下单时间:"+orderTime+"</br>订单金额:"+orderMoney+"</br>支付状态:<font color=\"blue\">已支付</font>&nbsp;&nbsp;收货状态:<font color=\"red\">未收货</font><a href='javascript:void()' onclick='paybill(\""+String(orderId)+"\",\""+3+"\")' > <img src=\"img/orderList/sh.jpg\" width=\"69\" height=\"19\"></a><br/>收货地址: "+orderReceiverinfo+"<br/>支付方式：在线支付</dd>");
+                            $("#orders").append("<dl class='Order_information'><dt><h3>订单信息</h3></dt></dl><dd>订单编号："+String(orderId)+"</br>下单时间："+orderTime+"</br>订单金额："+orderMoney+"</br>支付状态：<font color=\"blue\">已支付</font></br>收货状态：<font color=\"red\">未收货</font><a href='javascript:void()' onclick='paybill(\""+String(orderId)+"\",\""+3+"\")' > <img src=\"img/orderList/sh.jpg\" width=\"69\" height=\"19\"></a><br/>收货地址："+orderReceiverinfo+"<br/>支付方式：在线支付</dd>");
                         } else if(payState==3){
-                            $("#orders").append("<dl class='Order_information'><dt><h3>订单信息</h3></dt></dl><dd>订单编号:"+String(orderId)+"</br>下单时间:"+orderTime+"</br>订单金额:"+orderMoney+"</br>支付状态:<font color=\"blue\">已支付</font>&nbsp;&nbsp;收货状态:<font color=\"blue\">已收货</font><br/>收货地址: "+orderReceiverinfo+"<br/>支付方式：在线支付</dd>");
+                            $("#orders").append("<dl class='Order_information'><dt><h3>订单信息</h3></dt></dl><dd>订单编号："+String(orderId)+"</br>下单时间："+orderTime+"</br>订单金额："+orderMoney+"</br>支付状态：<font color=\"blue\">已支付</font></br>收货状态：<font color=\"blue\">已收货</font><br/>收货地址："+orderReceiverinfo+"<br/>支付方式：在线支付</dd>");
                         }
-                        $("#orders").append("<table id='orderTable_"+String(orderId)+"' width=\"1200\" border=\"0\" cellpadding=\"0\"cellspacing=\"1\" style=\"background:#d8d8d8;color:#333333\"><tr><th width=\"276\" height=\"30\" align=\"center\" valign=\"middle\" bgcolor=\"#f3f3f3\">商品图片</th><th width=\"247\" align=\"center\" valign=\"middle\" bgcolor=\"#f3f3f3\">商品名称</th><th width=\"231\" align=\"center\" valign=\"middle\" bgcolor=\"#f3f3f3\">商品单价</th><th width=\"214\" align=\"center\" valign=\"middle\" bgcolor=\"#f3f3f3\">购买数量</th><th width=\"232\" align=\"center\" valign=\"middle\" bgcolor=\"#f3f3f3\">小计</th></tr></table><div class=\"Order_price\">"+orderMoney+"元</div>");
+                        $("#orders").append("<table id='orderTable_"+String(orderId)+"' width=\"1200\" border=\"0\" cellpadding=\"0\"cellspacing=\"1\" style=\"background:#d8d8d8;color:#333333;margin: 0 auto;\"><tr><th width=\"276\" height=\"30\" align=\"center\" valign=\"middle\" bgcolor=\"#f3f3f3\">商品图片</th><th width=\"247\" align=\"center\" valign=\"middle\" bgcolor=\"#f3f3f3\">商品名称</th><th width=\"231\" align=\"center\" valign=\"middle\" bgcolor=\"#f3f3f3\">商品单价</th><th width=\"214\" align=\"center\" valign=\"middle\" bgcolor=\"#f3f3f3\">购买数量</th><th width=\"232\" align=\"center\" valign=\"middle\" bgcolor=\"#f3f3f3\">小计</th></tr></table><div class=\"Order_price\">"+orderMoney+"元</div>");
                         if(orderItems.length>0){
                             $.each(orderItems,function (indexnumber,orderItem) {
                                     var money=orderItem.itemNum*orderItem.itemPrice;
@@ -257,7 +260,7 @@
     <div id="line1">
         <div id="content">
             <li class="fore1" id="loginbar" clstag="homepage|keycount|home2013|01b">
-                <span id="head_span"\\\x><a href="views/login.html">登录</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="views/regist.html">注册</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="views/manage.html">后台</a></span>
+                <span id="head_span"\\\x><a href="views/login.html">登录</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="views/regist.html">注册</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="views/manage.html">后台</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="service/service.html">客服助手</a></span>
 
             </li>
         </div>
