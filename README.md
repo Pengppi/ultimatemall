@@ -14,7 +14,7 @@
 设计了多角色的用户权限管理，包括普通用户和管理员角色，并实现了相应的权限控制。
 
 项目结构：
-
+```text
 ultimatemall
 ├─ src
 │   ├─ main
@@ -40,7 +40,7 @@ ultimatemall
 │           └─ homework
 │               └─ ultimatemall
 └─ pom.xml                            # Maven构建配置文件
-
+```
 
 
 如何运行项目：
